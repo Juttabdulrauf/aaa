@@ -7,44 +7,61 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family: Arial, Helvetica, sans-serif;}
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body{
   min-height:100vh;
+  background: #047d73;
+  position:relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background:
     radial-gradient(circle at top left, #00ffe0, transparent 40%),
     radial-gradient(circle at bottom right, #0066ff, transparent 45%),
     linear-gradient(135deg, #047d73, #00c6ff);
-  position:relative;
-  overflow-x:hidden;
-  width:100%;
+  z-index: 0;
 }
-body::before, body::after{
-  content:""; position:absolute; width:320px; height:320px; background:rgba(255,255,255,0.18); border-radius:50%; filter: blur(45px); z-index:0;
-}
-body::before{ top:-90px; left:-90px; }
-body::after{ bottom:-90px; right:-90px; }
 
 header{ 
   text-align:center; 
   font-size:28px; 
   background:#06b09f; 
-  padding:25px 15px; 
+  padding:25px 10px; 
   position:relative; 
   z-index:1;
   width:100%;
 }
 
+header h1 {
+  word-wrap: break-word;
+}
+
 .header-paragraph{
   text-align:center; 
   color:#fff; 
-  margin:10px 15px 20px 15px; 
+  margin:10px 10px 20px 10px; 
   font-size:16px; 
   font-weight:bold;
+  position: relative;
+  z-index: 1;
 }
 
 .form-bg{ 
   display:flex; 
   justify-content:center; 
-  padding:15px; 
+  padding:10px; 
   position:relative; 
   z-index:1;
   width:100%;
@@ -53,13 +70,12 @@ header{
 #class{
   background: rgba(255,255,255,0.22);
   backdrop-filter: blur(18px);
-  width:calc(100% - 30px);
+  width:100%;
   max-width:380px;
   padding:26px 20px;
   border-radius:24px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.35);
   position:relative;
-  margin:0 auto;
 }
 
 #class label{ 
@@ -89,6 +105,7 @@ header{
   height:18px; 
   margin-right:10px;
   cursor:pointer;
+  flex-shrink: 0;
 }
 
 .checkbox-group {
@@ -153,23 +170,31 @@ header{
 .footer-paragraph{
   text-align:center; 
   color:#fff; 
-  margin:20px 15px 15px 15px; 
+  margin:20px 10px 15px 10px; 
   font-size:16px; 
   font-weight:bold;
+  position: relative;
+  z-index: 1;
 }
 
 footer{ 
   background:#06b09f; 
-  padding:22px 15px; 
+  padding:22px 10px; 
   margin-top:35px; 
   font-size:18px; 
   display:flex; 
-  justify-content:space-between; 
+  justify-content:center; 
   align-items:center; 
   flex-wrap:wrap; 
   position:relative; 
   z-index:1;
   width:100%;
+  text-align: center;
+}
+
+footer div {
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 @media(max-width:480px){ 
@@ -184,8 +209,7 @@ footer{
   }
   
   #class{
-    padding:22px 18px;
-    width:calc(100% - 20px);
+    padding:22px 16px;
   }
   
   .footer-paragraph{
@@ -194,10 +218,8 @@ footer{
   }
   
   footer{
-    flex-direction:column; 
-    gap:12px; 
-    text-align:center; 
     font-size:16px;
+    padding:20px 10px;
   } 
   
   .form-bg{
@@ -212,8 +234,7 @@ footer{
   }
   
   #class{
-    padding:20px 15px;
-    width:calc(100% - 16px);
+    padding:20px 14px;
   }
   
   #class input[type="text"],
