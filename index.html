@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,215 +6,127 @@
 <title>MY COURSE FORM</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+*{margin:0;padding:0;box-sizing:border-box;font-family: Arial, Helvetica, sans-serif;}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at top left, #00ffe0, transparent 40%),
+    radial-gradient(circle at bottom right, #0066ff, transparent 45%),
+    linear-gradient(135deg, #047d73, #00c6ff);
+  position:relative;
+  overflow-x:hidden;
+}
+body::before, body::after{
+  content:""; position:absolute; width:320px; height:320px; background:rgba(255,255,255,0.18); border-radius:50%; filter: blur(45px); z-index:0;
+}
+body::before{ top:-90px; left:-90px; }
+body::after{ bottom:-90px; right:-90px; }
+
+header{ text-align:center; font-size:28px; background:#06b09f; padding:25px 15px; position:relative; z-index:1; }
+
+.header-paragraph{
+  text-align:center; color:#fff; margin:10px auto 20px; font-size:16px; font-weight:bold; padding:0 15px;
 }
 
-body {
-  min-height: 100vh;
-  background: radial-gradient(circle at top left, #00ffe0, transparent 40%),
-              radial-gradient(circle at bottom right, #0066ff, transparent 45%),
-              linear-gradient(135deg, #047d73, #00c6ff);
-  position: relative;
-  overflow-x: hidden;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
+.info{ text-align:center; background:rgba(5,155,155,0.85); backdrop-filter: blur(8px); width:90%; max-width:520px; margin:18px auto; padding:14px; border-radius:14px; position:relative; z-index:1; }
 
-body::before, body::after {
-  content: "";
-  position: absolute;
-  width: 250px;
-  height: 250px;
-  background: rgba(255,255,255,0.18);
-  border-radius: 50%;
-  filter: blur(45px);
-  z-index: 0;
-}
+.form-bg{ display:flex; justify-content:center; padding:15px; position:relative; z-index:1; }
 
-body::before {
-  top: -100px;
-  left: -100px;
-}
-
-body::after {
-  bottom: -100px;
-  right: -100px;
-}
-
-header {
-  text-align: center;
-  font-size: 28px;
-  background: #06b09f;
-  padding: 25px;
-  position: relative;
-  z-index: 1;
-}
-
-.header-paragraph {
-  text-align: center;
-  color: #fff;
-  margin: 10px auto 20px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.info {
-  text-align: center;
-  background: rgba(5,155,155,0.85);
-  backdrop-filter: blur(8px);
-  width: 90%;
-  max-width: 520px;
-  margin: 18px auto;
-  padding: 14px;
-  border-radius: 14px;
-  position: relative;
-  z-index: 1;
-}
-
-.form-bg {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  position: relative;
-  z-index: 1;
-}
-
-#class {
+#class{
   background: rgba(255,255,255,0.22);
   backdrop-filter: blur(18px);
-  width: 100%;
-  max-width: 380px;
-  padding: 26px;
-  border-radius: 24px;
+  width:100%;
+  max-width:380px;
+  padding:26px;
+  border-radius:24px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.35);
+  position:relative;
+}
+#class label{ font-weight:bold; font-size:14px; display:block; margin-bottom:5px; }
+#class input[type="text"],
+#class input[type="date"],
+#class input[type="email"],
+#class input[type="number"]{ 
+  width:100%; 
+  height:36px; 
+  margin-bottom:10px; 
+  padding:6px 10px; 
+  border-radius:12px; 
+  border:1px solid rgba(0,0,0,0.3);
+  font-size:14px;
+}
+#class input[type="checkbox"]{ width:auto; height:auto; margin-right:8px; }
+
+.checkbox-group {
+  margin-bottom:15px;
 }
 
-#class label {
-  font-weight: bold;
-  font-size: 14px;
+.checkbox-group label {
+  display:flex;
+  align-items:center;
+  margin-bottom:8px;
+  font-weight:normal;
+  font-size:14px;
 }
 
-#class input {
-  width: 100%;
-  height: 36px;
-  margin-bottom: 10px;
-  padding: 6px 10px;
-  border-radius: 12px;
-  border: 1px solid rgba(0,0,0,0.3);
+.course-label {
+  font-weight:bold !important;
+  margin-bottom:10px !important;
 }
 
-#class input[type="checkbox"] {
-  width: auto;
-  height: auto;
+#submitBtn{
+  width:100%;
+  height:44px;
+  border:none;
+  border-radius:24px;
+  background:#06b09f;
+  font-size:16px;
+  cursor:pointer;
+  font-weight:bold;
+  position:relative;
+  transition:0.3s;
 }
 
-#submitBtn {
-  width: 100%;
-  height: 44px;
-  border: none;
-  border-radius: 24px;
-  background: #06b09f;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+#submitBtn:hover:not(:disabled){
+  background:#058f80;
 }
 
-#submitBtn:hover {
-  background: #058f81;
-}
-
-#successMsg {
-  display: none;
+#successMsg{
+  display:none;
   background: rgba(0,255,128,0.8);
   color: #000;
-  padding: 12px;
-  text-align: center;
-  border-radius: 12px;
-  font-weight: bold;
-  margin-bottom: 15px;
+  padding:12px;
+  text-align:center;
+  border-radius:12px;
+  font-weight:bold;
+  margin-bottom:15px;
 }
 
-.footer-paragraph {
-  text-align: center;
-  color: #fff;
-  margin-bottom: 15px;
-  font-size: 16px;
-  font-weight: bold;
+.footer-paragraph{
+  text-align:center; color:#fff; margin-bottom:15px; font-size:16px; font-weight:bold; padding:0 15px;
 }
 
-footer {
-  background: #06b09f;
-  padding: 22px;
-  margin-top: 35px;
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  position: relative;
-  z-index: 1;
+footer{ background:#06b09f; padding:22px 15px; margin-top:35px; font-size:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; position:relative; z-index:1; }
+.call-btn{ text-decoration:none; background:rgb(124, 73, 225); color:#fff; padding:10px 18px; border-radius:30px; font-weight:bold; transition:0.3s; }
+.call-btn:hover{ background:#000; color:#06b09f; }
+
+@media(max-width:480px){ 
+  header{font-size:20px; padding:20px 10px;} 
+  .header-paragraph{font-size:14px;}
+  #class{padding:20px 16px;}
+  .footer-paragraph{font-size:14px;}
+  footer{flex-direction:column; gap:10px; text-align:center; font-size:16px;} 
+  .form-bg{padding:10px;}
 }
 
-.call-btn {
-  text-decoration: none;
-  background: rgb(124, 73, 225);
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 30px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.call-btn:hover {
-  background: #000;
-  color: #06b09f;
-}
-
-@media (max-width: 768px) {
-  body::before {
-    width: 150px;
-    height: 150px;
-    top: -75px;
-    left: -75px;
-  }
-
-  body::after {
-    width: 150px;
-    height: 150px;
-    bottom: -75px;
-    right: -75px;
-  }
-
-  header {
-    font-size: 22px;
-    padding: 20px 15px;
-  }
-
-  .header-paragraph, .footer-paragraph {
-    font-size: 14px;
-    padding: 0 10px;
-  }
-
-  .form-bg {
-    padding: 15px 10px;
-  }
-
-  #class {
-    padding: 20px 15px;
-    max-width: 100%;
-  }
-
-  footer {
-    flex-direction: column;
-    text-align: center;
-    font-size: 16px;
+@media(max-width:360px){
+  header{font-size:18px;}
+  #class{padding:18px 14px;}
+  #class input[type="text"],
+  #class input[type="date"],
+  #class input[type="email"],
+  #class input[type="number"]{ 
+    font-size:13px;
   }
 }
 </style>
@@ -231,6 +143,7 @@ footer {
 
 <div class="form-bg">
   <div id="class">
+    <!-- Success message container -->
     <div id="successMsg">Form submitted successfully ✅</div>
 
     <form id="myForm">
@@ -243,12 +156,14 @@ footer {
       <label>BIRTH DATE</label>
       <input type="date" id="dob" required>
       
-      <label>SELECT YOUR COURSE</label><br><br>
-      <input type="checkbox" value="Web Development"> Web Development<br>
-      <input type="checkbox" value="Graphic Designing"> Graphic Designing<br>
-      <input type="checkbox" value="Cyber Security"> Cyber Security<br>
-      <input type="checkbox" value="Digital Marketing"> Digital Marketing<br>
-      <input type="checkbox" value="Mobile Management"> Mobile Management<br><br>
+      <label class="course-label">SELECT YOUR COURSE</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" value="Web Development"> Web Development</label>
+        <label><input type="checkbox" value="Graphic Designing"> Graphic Designing</label>
+        <label><input type="checkbox" value="Cyber Security"> Cyber Security</label>
+        <label><input type="checkbox" value="Digital Marketing"> Digital Marketing</label>
+        <label><input type="checkbox" value="Mobile Management"> Mobile Management</label>
+      </div>
       
       <label>GMAIL</label>
       <input type="email" id="email" required>
@@ -272,14 +187,15 @@ footer {
   </div>
 </footer>
 
+<!-- JS SCRIPT -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById("myForm");
   const submitBtn = document.getElementById("submitBtn");
   const successMsg = document.getElementById("successMsg");
 
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
 
     successMsg.style.display = "block";
     submitBtn.innerText = "Sent ✅";
